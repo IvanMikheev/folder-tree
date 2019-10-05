@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.title:hover {
+  border: 1px solid #666;
+}
+
+.icon {
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.icon-closed {
+  transform:rotate(0deg);
+}
+
+.icon-open {
+  transform:rotate(90deg);
+}
+
+.childs {
+  overflow: hidden;
+}
+
+.childs.closed {
+  max-height: 0;
+}
+

@@ -1,40 +1,61 @@
 import React, { Component } from 'react'
+import { FaCaretRight } from 'react-icons/fa';
 
 class TreeNode extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      id: null,
       title: '',
-      parentId: null,
       level: null,
       childs: []
     };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      isOpen: !state.isOpen
+    }));
   }
 
   componentDidMount() {
-    this.setState({ 
-      id: this.props.node.id,
+    this.setState({
+      isOpen: true,
       title: this.props.node.title,
-      parentId: this.props.node.parentId,
       level: this.props.level,
       childs: this.props.node.childs
-     });
+    });
   }
 
   render() {
-    return (
-      <div style={{ paddingLeft: 20 }}>
-        {this.state.title}
-        {this.state.childs.map( child => 
-          <TreeNode node={child} level={this.state.level + 1} />
-        )}
-      </div>
-    )
+    
+    const hasChild = this.state.childs.length > 0;
+
+    if (hasChild) {
+      return (
+        <div style={{ paddingLeft: 20 }}>
+          <p className="title" onClick={this.handleClick}>
+            <FaCaretRight className={this.state.isOpen ? "icon icon-open" : "icon icon-closed"} />{this.state.title}
+          </p>
+          <div className={this.state.isOpen ? "childs" : "childs closed"}>
+            {this.state.childs.map(child =>
+              <TreeNode node={child} level={this.state.level + 1} />
+            )}
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div style={{ paddingLeft: 20 }}>
+          <p className="title">
+            {this.state.title}
+          </p>          
+        </div>
+      )
+    }
   }
 }
-
-
 
 export default TreeNode

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TreeNode from './TreeNode'
 
-const URL = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
+//const URL = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
 const URL2 = 'https://next.json-generator.com/api/json/get/NkQZN2Z_D';
 
 class Tree extends Component {
