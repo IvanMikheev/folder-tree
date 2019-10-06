@@ -17,8 +17,62 @@ code {
   padding: 0;
 }
 
+.header h1{
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.tree {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.header-tree {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-color: #666;
+  color: #666;
+}
+
+.search-block {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.search-icon {
+  padding-left: 10px;
+}
+
+.input {
+  padding: 5px 10px 5px 30px;
+  margin-left: -25px;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 5px;
+  
+}
+
+.button:hover {
+  border-color: #666;
+}
+
 .title {
   cursor: pointer;
+  border: 1px solid #fff;
+
 }
 
 .title:hover {

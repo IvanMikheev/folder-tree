@@ -35,7 +35,6 @@ class TreeNode extends Component {
     return null;
   }
 
-
   render() {
     const hasChild = this.state.childs.length > 0;
     

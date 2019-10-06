@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import TreeNode from './TreeNode'
-
-//const URL = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
-const URL2 = 'https://next.json-generator.com/api/json/get/NkQZN2Z_D';
+import { FaSearch } from "react-icons/fa";
+const URL = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
+//const URL = 'https://next.json-generator.com/api/json/get/NkQZN2Z_D';
 
 class Tree extends Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class Tree extends Component {
         childs: []
       }
     };
-    //this.sortClick = this.sortClick.bind(this); 
     this.filterChange = this.filterChange.bind(this);
   }
 
@@ -43,7 +42,7 @@ class Tree extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
 
-    fetch(URL2)
+    fetch(URL)
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -53,11 +52,11 @@ class Tree extends Component {
       })
       .then(nodes => this.setState({ nodes, isLoading: false }))
       .catch(e => this.setState({ isLoading: false, error: e }));
-    console.log(this.state.nodes);
   }
 
   componentDidUpdate() {
     if (!this.state.isTreeDone) {
+      console.log(1)
       const nodes = this.state.nodes;
       // Find root and build tree
       if (nodes.filter(node => node.id === -1).length === 1) {
@@ -81,35 +80,23 @@ class Tree extends Component {
 
     if (nodes.filter(node => node.id === -1).length !== 1) {
       return <p>Wrong Tree!</p>;
-
-    } else {
-      if (!nestedTree.show) {
-        return (
-          <div style={Style}>
-            <input type="text" onChange={this.filterChange} />
-            <button onClick={this.sortClick.bind(this, ascendingOrder)}>A-Z</button>
-            <button onClick={this.sortClick.bind(this, descendingOrder)}>Z-A</button>
-            <p>Nothing to show</p>
-          </div>
-        )
-
-      } else {
-        return (
-          <div style={Style}>
-            <input type="text" onChange={this.filterChange} />
-            <button onClick={this.sortClick.bind(this, ascendingOrder)}>A-Z</button>
-            <button onClick={this.sortClick.bind(this, descendingOrder)}>Z-A</button>
-            <TreeNode key={nestedTree.id} node={nestedTree} level={0} />
-          </div>
-        )
-      }
     }
-  }
-}
 
-const Style = {
-  width: "1000px",
-  margin: "0 auto"
+    return (
+      <div className="tree">
+        <div className="header-tree">
+          <div className="search-block">
+            <FaSearch className="search-icon" />
+            <input className="input" type="text" onChange={this.filterChange} />
+          </div>
+          <button className="button" onClick={this.sortClick.bind(this, ascendingOrder)}>A-Z</button>
+          <button className="button" onClick={this.sortClick.bind(this, descendingOrder)}>Z-A</button>
+        </div>
+        {!nestedTree.show && <p>Nothing to show</p>}
+        {nestedTree.show && <TreeNode key={nestedTree.id} node={nestedTree} level={0} />}
+      </div>
+    )
+  }
 }
 
 const addChilds = (currentNode, allNodes) => {
