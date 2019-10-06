@@ -26,6 +26,7 @@ code {
 }
 
 .icon {
+  margin-left: -1em;
   transition-duration: 0.3s;
   transition-property: transform;
 }

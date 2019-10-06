@@ -8,7 +8,8 @@ class TreeNode extends Component {
     this.state = {
       title: '',
       level: null,
-      childs: []
+      childs: [],
+      show: true
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -20,19 +21,24 @@ class TreeNode extends Component {
     }));
   }
 
-  componentDidMount() {
-    this.setState({
-      isOpen: true,
-      title: this.props.node.title,
-      level: this.props.level,
-      childs: this.props.node.childs
-    });
+  static getDerivedStateFromProps(props, state) {
+    if (props.node.title !== state.title) {
+      return {
+        show: props.node.show,
+        isOpen: true,
+        title: props.node.title,
+        level: props.level,
+        childs: props.node.childs
+      };
+    }
+
+    return null;
   }
 
-  render() {
-    
-    const hasChild = this.state.childs.length > 0;
 
+  render() {
+    const hasChild = this.state.childs.length > 0;
+    
     if (hasChild) {
       return (
         <div style={{ paddingLeft: 20 }}>
@@ -40,8 +46,8 @@ class TreeNode extends Component {
             <FaCaretRight className={this.state.isOpen ? "icon icon-open" : "icon icon-closed"} />{this.state.title}
           </p>
           <div className={this.state.isOpen ? "childs" : "childs closed"}>
-            {this.state.childs.map(child =>
-              <TreeNode node={child} level={this.state.level + 1} />
+            {this.state.childs.filter(item => item.show).map(child =>
+              <TreeNode key={child.id} node={child} level={this.state.level + 1} />
             )}
           </div>
         </div>
@@ -51,7 +57,7 @@ class TreeNode extends Component {
         <div style={{ paddingLeft: 20 }}>
           <p className="title">
             {this.state.title}
-          </p>          
+          </p>
         </div>
       )
     }
