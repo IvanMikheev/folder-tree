@@ -64,6 +64,10 @@ code {
   background: transparent;
 }
 
+.node {
+  padding-left: 20px;
+}
+
 .node-title {
   cursor: pointer;
   border: 1px solid #fff;

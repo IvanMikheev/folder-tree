@@ -93,7 +93,7 @@ class Tree extends Component {
           <button className="sort-button" onClick={this.sortClick.bind(this, descendingOrder)}>Z-A</button>
         </div>
         {!nestedTree.show && <p>Nothing to show</p>}
-        {nestedTree.show && <TreeNode key={nestedTree.id} node={nestedTree} level={0} />}
+        {nestedTree.show && <TreeNode key={nestedTree.id} node={nestedTree} />}
       </div>
     )
   }

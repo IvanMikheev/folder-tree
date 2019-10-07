@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { FaCaretRight } from 'react-icons/fa';
 
 class TreeNode extends Component {
@@ -7,13 +8,22 @@ class TreeNode extends Component {
 
     this.state = {
       title: '',
-      level: null,
       childs: [],
       show: true
     };
 
     this.handleClick = this.handleClick.bind(this);
   }
+
+  static propTypes = {
+    node: PropTypes.shape({
+      id: PropTypes.number,
+      parentId: PropTypes.number,
+      childs: PropTypes.array,
+      title: PropTypes.string,
+      show: PropTypes.bool
+    })
+  };  
 
   handleClick() {
     this.setState(state => ({
@@ -27,7 +37,6 @@ class TreeNode extends Component {
         show: props.node.show,
         isOpen: true,
         title: props.node.title,
-        level: props.level,
         childs: props.node.childs
       };
     }
@@ -40,20 +49,20 @@ class TreeNode extends Component {
     
     if (hasChild) {
       return (
-        <div style={{ paddingLeft: 20 }}>
+        <div className="node">
           <p className="node-title" onClick={this.handleClick}>
             <FaCaretRight className={this.state.isOpen ? "node-icon node-icon-open" : "node-icon node-icon-closed"} />{this.state.title}
           </p>
           <div className={this.state.isOpen ? "node-childs" : "node-childs node-closed"}>
             {this.state.childs.filter(item => item.show).map(child =>
-              <TreeNode key={child.id} node={child} level={this.state.level + 1} />
+              <TreeNode key={child.id} node={child} />
             )}
           </div>
         </div>
       )
     } else {
       return (
-        <div style={{ paddingLeft: 20 }}>
+        <div className="node">
           <p className="node-title">
             {this.state.title}
           </p>
