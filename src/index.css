@@ -32,16 +32,16 @@ code {
   align-items: center;
 }
 
-.button {
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: 5px;
+.sort-button {  
   padding: 5px 10px;
   margin: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;  
+  background-color: #fff;
   cursor: pointer;
 }
 
-.button:hover {
+.sort-button:hover {
   border-color: #666;
   color: #666;
 }
@@ -56,48 +56,41 @@ code {
   padding-left: 10px;
 }
 
-.input {
+.search-input {
   padding: 5px 10px 5px 30px;
   margin-left: -25px;
-  background: transparent;
   border: 1px solid #000;
-  border-radius: 5px;
-  
+  border-radius: 5px;    
+  background: transparent;
 }
 
-.button:hover {
-  border-color: #666;
-}
-
-.title {
+.node-title {
   cursor: pointer;
   border: 1px solid #fff;
-
 }
 
-.title:hover {
+.node-title:hover {
   border: 1px solid #666;
 }
 
-.icon {
+.node-icon {
   margin-left: -1em;
   transition-duration: 0.3s;
   transition-property: transform;
 }
 
-.icon-closed {
+.node-icon-closed {
   transform:rotate(0deg);
 }
 
-.icon-open {
+.node-icon-open {
   transform:rotate(90deg);
 }
 
-.childs {
+.node-childs {
   overflow: hidden;
 }
 
-.childs.closed {
+.node-childs.node-closed {
   max-height: 0;
 }
-

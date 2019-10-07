@@ -41,10 +41,10 @@ class TreeNode extends Component {
     if (hasChild) {
       return (
         <div style={{ paddingLeft: 20 }}>
-          <p className="title" onClick={this.handleClick}>
-            <FaCaretRight className={this.state.isOpen ? "icon icon-open" : "icon icon-closed"} />{this.state.title}
+          <p className="node-title" onClick={this.handleClick}>
+            <FaCaretRight className={this.state.isOpen ? "node-icon node-icon-open" : "node-icon node-icon-closed"} />{this.state.title}
           </p>
-          <div className={this.state.isOpen ? "childs" : "childs closed"}>
+          <div className={this.state.isOpen ? "node-childs" : "node-childs node-closed"}>
             {this.state.childs.filter(item => item.show).map(child =>
               <TreeNode key={child.id} node={child} level={this.state.level + 1} />
             )}
@@ -54,7 +54,7 @@ class TreeNode extends Component {
     } else {
       return (
         <div style={{ paddingLeft: 20 }}>
-          <p className="title">
+          <p className="node-title">
             {this.state.title}
           </p>
         </div>

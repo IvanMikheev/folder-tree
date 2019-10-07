@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import TreeNode from './TreeNode'
 import { FaSearch } from "react-icons/fa";
-const URL = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
-//const URL = 'https://next.json-generator.com/api/json/get/NkQZN2Z_D';
+
+//const URL = 'https://raw.githubusercontent.com/wrike/frontend-test/master/data.json';
+const URL = 'https://next.json-generator.com/api/json/get/NkQZN2Z_D';
 
 class Tree extends Component {
   constructor(props) {
@@ -56,7 +57,6 @@ class Tree extends Component {
 
   componentDidUpdate() {
     if (!this.state.isTreeDone) {
-      console.log(1)
       const nodes = this.state.nodes;
       // Find root and build tree
       if (nodes.filter(node => node.id === -1).length === 1) {
@@ -87,10 +87,10 @@ class Tree extends Component {
         <div className="header-tree">
           <div className="search-block">
             <FaSearch className="search-icon" />
-            <input className="input" type="text" onChange={this.filterChange} />
+            <input className="search-input" type="text" onChange={this.filterChange} />
           </div>
-          <button className="button" onClick={this.sortClick.bind(this, ascendingOrder)}>A-Z</button>
-          <button className="button" onClick={this.sortClick.bind(this, descendingOrder)}>Z-A</button>
+          <button className="sort-button" onClick={this.sortClick.bind(this, ascendingOrder)}>A-Z</button>
+          <button className="sort-button" onClick={this.sortClick.bind(this, descendingOrder)}>Z-A</button>
         </div>
         {!nestedTree.show && <p>Nothing to show</p>}
         {nestedTree.show && <TreeNode key={nestedTree.id} node={nestedTree} level={0} />}
